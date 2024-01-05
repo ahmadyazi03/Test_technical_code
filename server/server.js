@@ -50,18 +50,30 @@ app.get("/api/genSegitiga/:val", (req, res) => {
 
     let s="";
     let angStr=req.params.val;
-    for(let i=0;i<angStr.length;i++){
-        for(let j=0;j<i+1;j++){
-            if(i==0){
-                s+=angStr.charAt(j);
-            }else if(i>j){
-                s+=angStr.charAt(j);
-            }else{
-                s+="0";
-            }
+    // for(let i=0;i<angStr.length;i++){
+    //     for(let j=0;j<i+1;j++){
+    //         if(i==0){
+    //             s+=angStr.charAt(j);
+    //         }else if(i>j){
+    //             s+=angStr.charAt(j);
+    //         }else{
+    //             s+="0";
+    //         }
+    //
+    //     }
+    //     s+="\n";
+    // }
+    let i=0;
+    let addZero=1;
+    while(i<angStr.length){
+        s+=angStr.charAt(i);
 
+        for(let j=0;j<addZero;j++){
+            s+="0";
         }
         s+="\n";
+            i++;
+        addZero++;
     }
 
     res.json({ hasil:s });
