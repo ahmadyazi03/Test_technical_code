@@ -14,9 +14,9 @@ app.get("/api/genGanjil/:val", (req, res) => {
 
     let angkamod=req.params.val;
 
-    for(let i=0;i<angkamod.length;i++){
-        if(i%2==0){
-            s+=angkamod.toString().charAt(i);
+    for(let i=0;i<parseInt(angkamod);i++){
+        if(i%2!=0){
+            s+=i+",";
         }
     }
 
@@ -26,20 +26,28 @@ app.get("/api/genGanjil/:val", (req, res) => {
 app.get("/api/genPrima/:val", (req, res) => {
     let s="";
 
-    let angkamod=req.params.val;
-    for (let i = 0; i <= angkamod.length; i++) {
-        let flag = 0;
 
-        for (let j = 2; j < i; j++) {
+    let   j, flag;
+    let angkamod=req.params.val;
+    for (let i = 0; i <= parseInt(angkamod); i++) {
+        if (i == 1 || i == 0)
+            continue;
+
+        // flag variable to tell
+        // if i is prime or not
+        flag = 1;
+
+        for (j = 2; j <= i / 2; ++j) {
             if (i % j == 0) {
-                flag = 1;
+                flag = 0;
                 break;
             }
         }
 
-        if (i > 1 && flag == 0) {
-            s+=i+"";
-        }
+
+        if (flag == 1)
+            s+=i+", ";
+
     }
 
     res.json({ hasil:s });
@@ -50,19 +58,7 @@ app.get("/api/genSegitiga/:val", (req, res) => {
 
     let s="";
     let angStr=req.params.val;
-    // for(let i=0;i<angStr.length;i++){
-    //     for(let j=0;j<i+1;j++){
-    //         if(i==0){
-    //             s+=angStr.charAt(j);
-    //         }else if(i>j){
-    //             s+=angStr.charAt(j);
-    //         }else{
-    //             s+="0";
-    //         }
-    //
-    //     }
-    //     s+="\n";
-    // }
+
     let i=0;
     let addZero=1;
     while(i<angStr.length){

@@ -63,7 +63,7 @@ export default function Home() {
         <br></br>
       <button onClick={(e)=>{genSegitiga()}}>Generate Segitiga</button><button onClick={(e)=>{genGanjil()}}>Generate Bilangan Ganjil</button>
       <button onClick={(e)=>{genPrima()}}>Generate Bilangan Prima</button>
-        <pre>
+        <pre style={{wordWrap:"break-word"}}>
             {hasil}
         </pre>
         <div>
