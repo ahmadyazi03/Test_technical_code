@@ -8,6 +8,10 @@ export default function Home() {
     const [angka,setAngka]=useState("");
 
    const genSegitiga= async()=>{
+       if(!isNumeric(angka)){
+           alert('masukkan angka valid')
+           return;
+       }
        let s="";
        let angkaMod=angka;
        let angStr=angkaMod.toString();
@@ -21,13 +25,19 @@ export default function Home() {
 
        });
        const data = await response.json();
-
+        if(data.error){
+            alert('Angka tidak valid')
+        }
        setHasil(data.hasil);
     }
   // const genSegitiga=()=>{
   //
   // }
   const genGanjil=async()=>{
+      if(!isNumeric(angka)){
+          alert('masukkan angka valid')
+          return;
+      }
       let angkaMod=angka;
       let angStr=angkaMod.toString();
       // const body = {
@@ -39,10 +49,17 @@ export default function Home() {
 
       });
       const data = await response.json();
+      if(data.error){
+          alert('Angka tidak valid')
+      }
       setHasil(data.hasil);
   }
 
     const genPrima=async()=>{
+       if(!isNumeric(angka)){
+           alert('masukkan angka valid')
+           return;
+       }
         let angkaMod=angka;
         let angStr=angkaMod.toString();
         // const body = {
@@ -54,10 +71,15 @@ export default function Home() {
 
         });
         const data = await response.json();
+        if(data.error){
+            alert('Angka tidak valid')
+        }
         setHasil(data.hasil);
     }
-
-  return (
+    function isNumeric(value) {
+        return /^-?\d+(\.\d+)?$/.test(value);
+    }
+    return (
     <div style={{marginLeft:40,marginTop:80}}>
       <input onChange={(e)=>setAngka(e.target.value)} type="text" placeholder="Input Angka"/>
         <br></br>
